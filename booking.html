@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Level3</title>
+</head>
+<body>
+
+<h1>Welcome To OLA Cabs</h1>
+<h2>Choose Your Comforts</h2>
+<br>
+<form onsubmit="booking()">
+<label>Select Cab Type : </label>
+		<select name="cabtype" id="cabType" required>
+			<option disabled>--Select Cab Type--</option>
+			<option value="micro" >Micro</option>
+			<option value="mini" >Mini</option>
+			<option value="prime">Prime</option>
+		</select>
+		<br><br>
+		Kilometer : <input type="number" name="km" id="km" placeholder="Enter No.Of Kilometer" required>
+		<br><br>
+		Journey date : <input type="date" name="jdate" id="jdate" required><br><br>
+		Pick Up Time : <input type="time" name="pickTime" id="pick"  required ><br><br>
+		Are You a Senior Citizen.?<input type="checkbox" name="yes" id="senior" value="yes">Yes
+		<input type="checkbox" name="no" id="nosenior" value="no">No<br><br>
+		<label id="gender">Gender : </label>
+		  <input type="radio" id="gender" name="gender" value="male">Male
+		  <input type="radio" id="gender" name="gender" value="female">Female
+		  <input type="radio" id="gender" name="gender" value="other">Others<br><br>
+		<button>Submit</button>
+</form>
+<script>
+function booking()
+{
+	event.preventDefault();
+	
+    let cabType=document.querySelector("#cabType").value;
+    let km=document.querySelector("#km").value;
+    let price =0;
+    switch(cabType)
+    {
+    case"micro":
+    	 price=km*10;
+    	break;
+    case"mini":
+    	 price=km*15;
+    	break;
+    case"prime":
+    	 price=km*20;
+    	break;
+    }
+    let amountGst=price+(price*0.07);
+    //let todayDateStr=new Date().toJSON().substr(0,10);
+   // document.querySelector("#jdate").setAttribute("min",todayDateStr);
+    let senior=document.querySelector("#senior");
+	let nonsenior=document.querySelector("#nosenior");	
+    let pickTimeString=document.querySelector("#pick").value;
+    let pickTimeInt=pickTimeString.substr(0,2);
+    if(pickTimeInt >= 17 && pickTimeInt<=19)
+    {
+    	
+    	let amountpeek=amountGst+(amountGst*0.0125);
+    	alert("You are choosing Peek Hour..So additional charges will be Added..")
+    	//alert("Total fare with addition of Peek Hour Charges : " +amountpeek.toFixed(2)+"Rs /-");
+    	if(senior.checked == true && nonsenior.checked == true)
+    	{
+    	alert("Please Let us know you are a Senior Citizen or not...");
+    	}
+   		else if(senior.checked == true && nonsenior.checked ==false)
+    	{
+    	let amountSenior=amountpeek*0.5;
+    	alert("Total Fare with Peek Hour Charges and With Senior Citizen Discount : " +amountSenior.toFixed(2)+" Rs/-");
+    	}
+   	 	else if(senior.checked==false && nonsenior.checked == true)
+    	{
+    	alert("Total Fare with Peek Hour Charges : "+amountpeek.toFixed(2)+" Rs/-");
+    	} 
+   	 	else
+   	 		{
+   	 	alert("Please mark any one check box...");
+   	 		}
+    	alert("Thank You for Choosing Us...");
+    }
+    else
+    	{
+    	if(senior.checked == true && nonsenior.checked == true)
+    	{
+    	alert("Please Let us know you are a Senior Citizen or not...");
+    	}
+   		else if(senior.checked == true && nonsenior.checked ==false)
+    	{
+    	let amountSenior=amountGst*0.5;
+    	alert("Total Fare With Senior Citizen Discount : " +amountSenior.toFixed(2)+" Rs/-");
+    	}
+   	 	else if(senior.checked==false && nonsenior.checked == true)
+    	{
+    	alert("Total Fare  : "+amountGst.toFixed(2)+" Rs/-");
+    	} 
+   	 	else
+   	 		{
+   	 	alert("Please mark any one check box...");
+   	 		}
+    	alert("Thank You for Choosing Us...");
+    	}
+    	
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Login Page</title>
+</head>
+<body><center>
+<br><br>
+<h1> OLA CABS</h1>
+<h2>Login Page</h2>
+	<form onsubmit="login()">
+		<input type="text" name="name" id="name" placeholder="Enter Name" required autofocus><br><br>
+		<input type="number" name="mobnoe" id="mobno" placeholder="Enter Mobile Number" required><br><br>
+		<input type="password" name="password" id="password" placeholder="Enter Password" required><br><br>
+        <button type="reset">Reset</button>
+        <button>Submit</button>
+	</form>
+</center>
+<script>
+    function login()
+    {
+        event.preventDefault();
+        let username=document.querySelector("#name").value;
+        let mobNo=document.querySelector("#mobno").value;
+        let pswd=document.querySelector("#password").value;
+        //alert("Login Successfully...Welcome "+username)
+
+        if(username=="SK" && username.length>0)
+        {
+        	if(mobNo.length==10 && mobNo.length!=0)
+        	{
+        		if(pswd.length>=5 && pswd.length!=0)
+        			{
+        				alert("Login Successfully...Welcome "+username)
+        				window.location.href="booking.html";
+        			}
+        		else
+        			{
+        				alert("Check Your Password");
+        			}
+        	}
+        	else
+        		{
+        			alert("Check Your Mobile Number");
+        		}
+        }
+        else
+        	{
+        		alert("Invalid Login...Check Your Name...")
+        	}
+    }
+</script>
+</body>
+</html>
